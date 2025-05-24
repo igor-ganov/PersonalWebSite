@@ -18,6 +18,7 @@ export default function (eleventyConfig) {
 	});
 	eleventyConfig.addTemplateFormats("11ty.ts,11ty.tsx");
 	eleventyConfig.addWatchTarget("**/*.ts");
+	eleventyConfig.addWatchTarget("**/*.scss");
 	return {
 		dir: {
 		  input: "src",

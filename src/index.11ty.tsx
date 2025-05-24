@@ -6,7 +6,8 @@ export const data = {
 
 export default () => (
 	<div>
-		<h1>Hello World</h1>
+		<link rel="stylesheet" href="./index.css" />
+		<h1 className="title">Hello World</h1>
 		<button id="button">Click me</button>
 		<script src="./index.js"></script>
 	</div>
