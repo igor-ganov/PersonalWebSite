@@ -1,6 +1,4 @@
 
-import React from "react";
-
 export const data = {
 	layout: "main",
 	title: "404: Not found",

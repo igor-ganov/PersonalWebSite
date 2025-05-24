@@ -7,7 +7,7 @@ export const data = {
 export default () => (
 	<div>
 		<h1>Hello World</h1>
-		<button id="button">Click me</button>
-		<script src="./index.js"></script>
+		<button id="button1">Click me</button>
+		<script src="./home.js"></script>
 	</div>
 );
