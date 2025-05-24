@@ -1,3 +1,4 @@
+import Layout from "./_includes/layout/Layout";
 
 export const data = {
 	layout: "main",
@@ -5,10 +6,10 @@ export const data = {
 };
 
 export default () => (
-	<div>
+	<Layout title="Home">
 		<link rel="stylesheet" href="./index.css" />
 		<h1 className="title">Hello World</h1>
 		<button id="button">Click me</button>
 		<script src="./index.js"></script>
-	</div>
+	</Layout>
 );
