@@ -1,7 +1,9 @@
 import "tsx/esm";
+import { transformSync } from "esbuild";
 import { renderToStaticMarkup } from "react-dom/server";
 import * as path from "path";
 import * as sass from "sass";
+import * as fs from "fs";
 export default function (eleventyConfig) {
   eleventyConfig.addLayoutAlias("main", "layout/main.njk");
 
@@ -41,11 +43,19 @@ export default function (eleventyConfig) {
       };
     },
   });
+
+  const tsConfig = JSON.parse(fs.readFileSync("./tsconfig.ts.json", "utf-8"));
+  eleventyConfig.addExtension("ts", {
+    outputFileExtension: "js",
+    compile: async function (inputContent) {
+      let result = transformSync(inputContent, { loader: "ts", tsconfigRaw: tsConfig });
+      return async () => result.code;
+    },
+  });
+
   //copy assets
   eleventyConfig.addPassthroughCopy("src/assets/**/*.jpg", "dist/assets");
-  eleventyConfig.addTemplateFormats("11ty.ts,11ty.tsx,scss");
-  eleventyConfig.addWatchTarget("**/*.ts");
-  // eleventyConfig.addWatchTarget("**/*.scss");
+  eleventyConfig.addTemplateFormats("11ty.ts,11ty.tsx,scss,ts");
   return {
     dir: {
       input: "src",

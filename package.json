@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:ts": "tsc -p tsconfig.ts.json",
-    "build": "npm run build:ts && npx @11ty/eleventy",
-    "start": "npm run build:ts && npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy",
+    "start": "npx @11ty/eleventy --serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
