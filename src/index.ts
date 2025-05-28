@@ -1,5 +1,3 @@
-import "./components/_greeting";
-
 //click button
 console.log("Hello World");
 

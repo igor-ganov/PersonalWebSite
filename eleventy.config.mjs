@@ -60,6 +60,7 @@ export default function (eleventyConfig) {
 
   //copy assets
   eleventyConfig.addPassthroughCopy("src/assets/**/*.jpg", "dist/assets");
+  eleventyConfig.addPassthroughCopy("src/assets/**/*.js", "dist/assets");
   eleventyConfig.addTemplateFormats("11ty.ts,11ty.tsx,scss,ts");
   return {
     dir: {

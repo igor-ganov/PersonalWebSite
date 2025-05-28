@@ -18,35 +18,21 @@
 }
 
 .animation-container {
-    --var-timeline-name: var(--timeline-name, --default-timeline);
-    view-timeline-name: var(--var-timeline-name);
     view-timeline-axis: block;
     height: var(--timeline-duration, 500vh);
+    view-timeline-name: --default-timeline;
     width: 100%;
     .animated {
         //animation: my-move linear forwards;
         animation-timing-function: linear;
         animation-fill-mode: forwards;
-        animation-timeline: var(--var-timeline-name);
-        animation-range: contain var(--animation-from, 0%) contain var(--animation-to, 100%);
+        animation-timeline: --default-timeline;
+        animation-range: contain 0 contain 100%;
     }
-}
-
-@property --animation-from {
-    syntax: "<percentage>";
-    inherits: true;
-}
-@property --animation-to {
-    syntax: "<percentage>";
-    inherits: true;
 }
 
 @property --timeline-duration {
     syntax: "<length>";
-    inherits: true;
-}
-@property --timeline-name {
-    syntax: "<string>";
     inherits: true;
 }
 

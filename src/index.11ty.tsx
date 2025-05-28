@@ -20,7 +20,7 @@ const aboutTitle = {
 
 export default () => (
   <Layout className="home component" title="Home">
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./index.css"/>
     <div className="animation-container">
       <Greeting />
     </div>
