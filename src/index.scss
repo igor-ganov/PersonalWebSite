@@ -1,13 +1,13 @@
 @use "components/_greeting.scss";
 
-.home.component{
+.home.component {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 3rem; 
+    font-size: 3rem;
 }
 
-.greeting.component{
+.greeting.component {
     height: 100%;
 }
 
@@ -36,3 +36,8 @@
     inherits: true;
 }
 
+@media screen and (max-width: 768px) {
+    .home.component {
+        font-size: 2rem;
+    }
+}

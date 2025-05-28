@@ -1,7 +1,9 @@
 .greeting.component {
     > .avatar-container {
         display: grid;
-        grid-template-columns: fit-content(10%) 1fr;
+        grid-template-columns: 0 1fr;
+        height: 100vh;
+        align-content: center;
         > .avatar {
             display: block;
             width: fit-content;
@@ -9,16 +11,17 @@
             > img {
                 height: 100%;
                 object-fit: fill;
-                box-shadow: 1px 1px 10px 1px #808080;
+                // box-shadow: 1px 1px 10px 1px #808080;
             }
         }
         > .intro-text {
+            position: relative;
             display: flex;
             justify-content: center;
+            align-items: center;
             text-align: center;
             > .intro {
                 position: absolute;
-                top: 0;
                 flex-grow: 1;
             }
         }
@@ -46,11 +49,6 @@
         will-change: opacity;
         animation-name: greeting;
         opacity: 1;
-    }
-    .animation-left-to-right {
-        will-change: transform;
-        animation-name: move-from-left-to-right;
-        transform: translateX(-100%);
     }
     .starting-animation-greeting {
         will-change: transform, opacity;
@@ -91,5 +89,43 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .greeting.component {
+        > .avatar-container {
+            grid-template-columns: 1fr;
+            grid-template-rows: 0 1fr;
+            justify-items: stretch;
+
+            > .avatar {
+                justify-self: center;
+            }
+        }
+
+        > .animation-greeting-container {
+            will-change: grid-template-rows;
+            grid-template-rows: 0 1fr;
+            animation-name: greeting-container;
+            animation-range: contain 0 contain 10%;
+        }
+        .animation-greeting-avatar {
+            will-change: transform;
+            transform: translateY(-100%);
+            animation-name: greeting-avatar;
+            animation-range: contain 0 contain 10%;
+        }
+    }
+
+    @keyframes greeting-container {
+        to {
+            grid-template-rows: 400px 1fr;
+        }
+    }
+    @keyframes greeting-avatar {
+        to {
+            transform: translateY(0);
+        }
     }
 }
