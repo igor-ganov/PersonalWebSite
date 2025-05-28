@@ -4,9 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build:ts": "tsc -p tsconfig.ts.json",
-    "build:scss": "sass src:dist --no-source-map",
-    "build": "npm run build:ts && npm run build:scss && npx @11ty/eleventy",
-    "start": "npm run build:ts && npm run build:scss && npx @11ty/eleventy --serve",
+    "build": "npm run build:ts && npx @11ty/eleventy",
+    "start": "npm run build:ts && npx @11ty/eleventy --serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
