@@ -1,12 +1,10 @@
 @use "components/_greeting.scss";
 
-@scope (.home) to (.component){
-    :scope{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 3rem; 
-    }
+.home.component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 3rem; 
 }
 
 .greeting.component{
