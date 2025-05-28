@@ -1,5 +1,5 @@
 import "tsx/esm";
-import { transformSync } from "esbuild";
+import { transform } from "esbuild";
 import { renderToStaticMarkup } from "react-dom/server";
 import * as path from "path";
 import * as sass from "sass";
@@ -38,17 +38,22 @@ export default function (eleventyConfig) {
       // Map dependencies for incremental builds
       this.addDependencies(inputPath, result.loadedUrls);
 
-      return async (data) => {
-        return result.css;
-      };
+      // return async (data) => {
+      //   return {
+      //     path: outputPath,
+      //     content: result.css
+      //   }
+    // };
+    return async (data) => result.css;
     },
   });
 
   const tsConfig = JSON.parse(fs.readFileSync("./tsconfig.ts.json", "utf-8"));
   eleventyConfig.addExtension("ts", {
     outputFileExtension: "js",
-    compile: async function (inputContent) {
-      let result = transformSync(inputContent, { loader: "ts", tsconfigRaw: tsConfig });
+    compile: async function (inputContent, inputPath) {
+      let result = await transform(inputContent, { loader: "ts", tsconfigRaw: tsConfig });
+      this.addDependencies(inputPath, result.loadedUrls);
       return async () => result.code;
     },
   });
