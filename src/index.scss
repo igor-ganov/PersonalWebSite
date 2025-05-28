@@ -1,3 +1,92 @@
-.title {
-	color: red;
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 3rem;
+    > .intro{
+    }
+
+    .avatar-container{
+        display: flex;
+        > .avatar {
+            justify-self: flex-start;
+        }
+        > .intro {
+            flex-grow: 1;
+            opacity: 0;
+        }
+    }
+    .avatar{
+        display: block;
+        width: fit-content;
+        height: 400px;
+        > img {
+            height: 100%;
+            object-fit: fill;
+            box-shadow: 1px 1px 10px 1px #808080;
+        }
+    }
+
+    .fixed {
+        position: sticky;
+        top: 0;
+        height: fit-content;
+    }
+
+    .animation-container {
+        --var-timeline-name: var(--timeline-name, --default-timeline);
+        view-timeline-name: var(--var-timeline-name);
+        view-timeline-axis: block;
+        height: var(--timeline-duration, 500vh);
+        .animated {
+            //animation: my-move linear forwards;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-timeline: var(--var-timeline-name);
+            animation-range: contain var(--animation-from, 0%) contain var(--animation-to, 100%);
+        }
+    }
+    .animation-appear{
+        animation-name: appear;
+        opacity: 0;
+    }
+    .animation-left-to-right{
+        animation-name: move-from-left-to-right;
+        transform: translateX(-100%);
+    }
+}
+@property --animation-from {
+    syntax: "<percentage>";
+    inherits: true;
+}
+@property --animation-to {
+    syntax: "<percentage>";
+    inherits: true;
+}
+
+@property --timeline-duration {
+    syntax: "<length>";
+    inherits: true;
+}
+@property --timeline-name {
+    syntax: "<string>";
+    inherits: true;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes move-from-left-to-right {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
 }

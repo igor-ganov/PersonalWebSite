@@ -1,16 +1,31 @@
-
 interface LayoutProps {
-    title: string;
-    children: React.ReactNode;
-  }
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+}
 
-  const Layout: React.FC<LayoutProps> = ({ title, children }) => {
-    return (
-      <div>
-        <h1>{title}</h1>
-        <main>{children}</main>
-      </div>
-    );
-  };
-  
-  export default Layout;
+export const data = {
+  layout: "main",
+  title: "Home",
+};
+
+const Layout: React.FC<LayoutProps> = ({ children, title, className }) => {
+  return (
+    <>
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>{title}</title>
+        </head>
+        <body>
+          <div>
+            <main className={className}>{children}</main>
+          </div>
+        </body>
+      </html>
+    </>
+  );
+};
+
+export default Layout;
