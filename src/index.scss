@@ -1,36 +1,37 @@
 @use "components/_greeting.scss";
 
-.home.component{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 3rem; 
-
-    .greeting.component{
-        height: 100%;
+@scope (.home) to (.component){
+    :scope{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 3rem; 
     }
+}
 
-    .fixed {
-        position: sticky;
-        top: 0;
-        height: fit-content;
-    }
+.greeting.component{
+    height: 100%;
+}
 
-    .animation-container {
-        --var-timeline-name: var(--timeline-name, --default-timeline);
-        view-timeline-name: var(--var-timeline-name);
-        view-timeline-axis: block;
-        height: var(--timeline-duration, 500vh);
-        width: 100%;
-        .animated {
-            //animation: my-move linear forwards;
-            animation-timing-function: linear;
-            animation-fill-mode: forwards;
-            animation-timeline: var(--var-timeline-name);
-            animation-range: contain var(--animation-from, 0%) contain var(--animation-to, 100%);
-        }
+.fixed {
+    position: sticky;
+    top: 0;
+    height: fit-content;
+}
+
+.animation-container {
+    --var-timeline-name: var(--timeline-name, --default-timeline);
+    view-timeline-name: var(--var-timeline-name);
+    view-timeline-axis: block;
+    height: var(--timeline-duration, 500vh);
+    width: 100%;
+    .animated {
+        //animation: my-move linear forwards;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        animation-timeline: var(--var-timeline-name);
+        animation-range: contain var(--animation-from, 0%) contain var(--animation-to, 100%);
     }
-    
 }
 
 @property --animation-from {
