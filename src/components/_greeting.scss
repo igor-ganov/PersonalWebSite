@@ -34,10 +34,11 @@
         animation-range: contain 50% contain 100%;
     }
     .animation-greeting-avatar {
-        will-change: transform;
+        will-change: transform, opacity;
         transform: translateX(-100%);
         animation-name: greeting-avatar;
         animation-range: contain 0 contain 10%;
+        opacity: 0;
     }
     .animation-greeting-container {
         will-change: grid-template-columns;
@@ -69,6 +70,7 @@
 @keyframes greeting-avatar {
     to {
         transform: translateX(0);
+        opacity: 1;
     }
 }
 @keyframes greeting-container {
@@ -122,10 +124,11 @@
             animation-range: contain 0 contain 10%;
         }
         .animation-greeting-avatar {
-            will-change: transform;
+            will-change: transform, opacity;
             transform: translateY(-100%);
             animation-name: greeting-avatar;
             animation-range: contain 0 contain 10%;
+            opacity: 0;
         }
     }
 
@@ -137,6 +140,7 @@
     @keyframes greeting-avatar {
         to {
             transform: translateY(0);
+            opacity: 1;
         }
     }
 }
