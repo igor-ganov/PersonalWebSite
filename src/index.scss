@@ -21,6 +21,7 @@
     view-timeline-axis: block;
     height: var(--timeline-duration, 500vh);
     view-timeline-name: --default-timeline;
+    scroll-snap-type: y mandatory;
     width: 100%;
     .animated {
         //animation: my-move linear forwards;

@@ -1,6 +1,8 @@
+import {FC, ReactNode} from "react";
+
 interface LayoutProps {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
@@ -9,7 +11,7 @@ export const data = {
   title: "Home",
 };
 
-const Layout: React.FC<LayoutProps> = ({ children, title, className }) => {
+const Layout: FC<LayoutProps> = ({ children, title, className }) => {
   return (
     <>
       <html lang="en">

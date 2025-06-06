@@ -1,5 +1,6 @@
 import Layout from "./_includes/layout/Layout";
 import Greeting from "./components/_greeting";
+import AnimationBlock from "./components/_animationBlock";
 export const data = {
   layout: "main",
   title: "Home",
@@ -18,7 +19,7 @@ const aboutTitle = {
   },
 };
 
-export default () => (
+const Index = () => (
   <Layout className="home component" title="Home">
     <link rel="stylesheet" href="./index.css"/>
     <div className="animation-container">
@@ -32,6 +33,9 @@ export default () => (
         <li key={index}>{detail}</li>
       ))}
     </ul>
+    <AnimationBlock />
     <script src="./index.js"></script>
   </Layout>
 );
+
+export default Index;

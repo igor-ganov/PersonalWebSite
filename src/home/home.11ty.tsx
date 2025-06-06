@@ -4,7 +4,7 @@ export const data = {
 	title: "Home",
 };
 
-export default () => (
+const Home = () => (
 	<div>
 		<link rel="stylesheet" href="./home.css" />
 		<h1>Hello World</h1>
@@ -12,3 +12,5 @@ export default () => (
 		<script src="./home.js"></script>
 	</div>
 );
+
+export default Home;

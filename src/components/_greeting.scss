@@ -1,4 +1,14 @@
 .greeting.component {
+    > .timeline-points-container {
+        display: grid;
+        grid-template-rows: 10% 1fr;
+        height: 100%;
+        width: 100%;
+        > * {
+            scroll-snap-align: start;
+        }
+    }
+    
     > .avatar-container {
         display: grid;
         grid-template-columns: 0 1fr;
@@ -39,6 +49,7 @@
         animation-name: greeting-avatar;
         animation-range: contain 0 contain 10%;
         opacity: 0;
+        
     }
     .animation-greeting-container {
         will-change: grid-template-columns;
@@ -129,6 +140,7 @@
             animation-name: greeting-avatar;
             animation-range: contain 0 contain 10%;
             opacity: 0;
+            
         }
     }
 

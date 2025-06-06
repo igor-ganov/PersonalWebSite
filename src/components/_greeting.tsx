@@ -11,7 +11,7 @@ const aboutTitle = {
   },
 };
 
-export default () => (
+const Greeting = () => (
   <div className="greeting component">
     <div
       className="avatar-container animated animation-greeting-container fixed"
@@ -35,5 +35,11 @@ export default () => (
         </h1>
       </div>
     </div>
+    <div className="timeline-points-container">
+      <div></div>
+      <div></div>
+    </div>
   </div>
 );
+
+export default Greeting;
