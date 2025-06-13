@@ -52,6 +52,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addExtension("ts", {
     outputFileExtension: "js",
     compile: async function (inputContent, inputPath) {
+      if(inputPath.startsWith("_")) return;
       let result = await transform(inputContent, { loader: "ts", tsconfigRaw: tsConfig });
       this.addDependencies(inputPath, result.loadedUrls);
       return async () => result.code;
