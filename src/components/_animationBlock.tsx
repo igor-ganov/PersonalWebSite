@@ -43,28 +43,29 @@ const animations: Record<ChildrenKey, {
     hello: {
         start: {opacity: 0},
         states: {
-            part2: {opacity: 1},
+            part1: {opacity: 1},
             part3: {opacity: 0}
         }
     },
     avatar: {
         start: {transform: 'translateX(-100%)'},
         states: {
-            part1: {transform: 'translateX(0)'},
-            part2: {transform: 'translateX(-100%)'},
+            part2: {transform: 'translateX(0)'},
+            part4: {transform: 'translateX(-100%)'},
         }
     },
     "greeting-container": {
-        start: {transform: 'translateY(-100%)'},
+        start: {'grid-template-columns': '0 1fr'},
         states: {
-            part2: {transform: 'translateY(0)'},
-            part4: {transform: 'translateY(-100%)'}
+            part2: {'grid-template-columns': '150px 1fr'},
+            part4: {'grid-template-columns': '0 1fr'}
         }
     }
 }
 
 const children: JSX.Element[] = [
     <div key='greeting-container' className={"greeting-container dum-block-container"}>
+        <div key='avatar' className={"avatar dum-block"}></div>
         <div key='hello' className={"hello dum-block"}></div>
     </div>
 ];
