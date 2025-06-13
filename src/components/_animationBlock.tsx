@@ -1,5 +1,6 @@
 import {FC, JSX} from "react";
-import AnimationStep from "./_animationStep";
+import {createStyles} from "./_animationStep";
+import {toArray, getKeys, toObject} from "./_help-functions";
 
 const aggregate = function* <T, TResult extends TInit, TInit>(
     src: Iterable<T>,
@@ -13,18 +14,17 @@ const aggregate = function* <T, TResult extends TInit, TInit>(
         previous = result;
     }
 };
-const keyOf = <T extends object>(o: T): (keyof T)[] => (Object.keys(o) as (keyof T)[]);
-const toObject = <T, TKey extends string, TValue>(src: T[], fn: (value: T) => [TKey, TValue]): Record<TKey, TValue> => Object.fromEntries(src.map(fn)) as Record<TKey, TValue>;
 
 const timelines = {
     part1: 100,
     part2: 100,
-    part3: 200,
+    part3: 100,
+    part4: 100,
 }
-const parts = keyOf(timelines).map(key => timelines[key]);
+const parts = getKeys(timelines).map(key => timelines[key]);
 const fullDuration =
     parts.reduce((sum, value) => sum + value, 0);
-const intervals = toObject([...aggregate(keyOf(timelines), (acc, key) => ({
+const intervals = toObject([...aggregate(getKeys(timelines), (acc, key) => ({
     key: key,
     from: acc.to,
     to: acc.to + timelines[key] / fullDuration * 100
@@ -32,53 +32,70 @@ const intervals = toObject([...aggregate(keyOf(timelines), (acc, key) => ({
 
 type TimelinesPart = keyof typeof timelines;
 
-const children: {
-    parts: TimelinesPart | {from: TimelinesPart, to: TimelinesPart},
-    componentFactory: (key: string, interval: { from: number, to: number }) => JSX.Element
-}[] = [
-    {
-        parts: 'part1', componentFactory: (key: string, interval: { from: number, to: number }) =>
-            <AnimationStep
-                key={key} id={key} animationName={"my-move"}
-                scrollContainerTimeline={"--default-timeline"}
-                interval={interval}>
-                <div></div>
-            </AnimationStep>
+
+type ChildrenKey = 'hello' | 'greeting-container' | 'avatar';
+
+const animations: Record<ChildrenKey, {
+    start: {[key: string]: string | number},
+    states: Partial<Record<TimelinesPart, {[key: string]: string | number}>>,
+    timeline?: string
+}> = {
+    hello: {
+        start: {opacity: 0},
+        states: {
+            part2: {opacity: 1},
+            part3: {opacity: 0}
+        }
     },
-    {
-        parts: {from: 'part2', to: 'part3'}, componentFactory: (key: string, interval: { from: number, to: number }) =>
-            <AnimationStep
-                key={key} id={key} animationName={"my-move-2"}
-                scrollContainerTimeline={"--default-timeline"}
-                interval={interval}>
-                <div></div>
-            </AnimationStep>
+    avatar: {
+        start: {transform: 'translateX(-100%)'},
+        states: {
+            part1: {transform: 'translateX(0)'},
+            part2: {transform: 'translateX(-100%)'},
+        }
     },
-    {
-        parts: 'part3', componentFactory: (key: string, interval: { from: number, to: number }) =>
-            <AnimationStep
-                key={key} id={key} animationName={"my-move-3"}
-                scrollContainerTimeline={"--default-timeline"}
-                interval={interval}>
-                <div></div>
-            </AnimationStep>
-    },
+    "greeting-container": {
+        start: {transform: 'translateY(-100%)'},
+        states: {
+            part2: {transform: 'translateY(0)'},
+            part4: {transform: 'translateY(-100%)'}
+        }
+    }
+}
+
+const children: JSX.Element[] = [
+    <div key='greeting-container' className={"greeting-container dum-block-container"}>
+        <div key='hello' className={"hello dum-block"}></div>
+    </div>
 ];
 
-const getInterval = (part: TimelinesPart | {from: TimelinesPart, to: TimelinesPart}) => typeof part === 'object' ?
+const animationStyles = toArray(animations).map(({key, value: {start, states, timeline}}) => createStyles(
+    {
+        id: key,
+        startState: start,
+        states: toArray(states).map(s => ({state: s.value, interval: intervals[s.key]})),
+        scrollContainerTimeline: timeline ?? "--default-timeline"
+    })).join('\n');
+
+const getInterval = (part: TimelinesPart | { from: TimelinesPart, to: TimelinesPart }) => typeof part === 'object' ?
     {from: intervals[part.from].from, to: intervals[part.to].to} : intervals[part];
 
 const AnimationBlock: FC = () => (
-    <div>
-        <div>
-            {children.map(({componentFactory, parts}, index) =>
-                componentFactory(`animation-${index}`, getInterval(parts)))}
+    <div className={"scroll-container"}>
+        <style>{`${animationStyles}`}</style>
+        <div className={"time-line-container"}>
+            <div className={"sticky"}>
+                {children}
+            </div>
+            <div className={"snap-container"}>
+                {parts.map((duration, index) =>
+                    <div className={'snap-block'} key={index} style={{'height': `${duration}vh`}}></div>)}
+            </div>
         </div>
-        <div>
-            {parts.map((duration, index) =>
-                <div key={index} style={{'height': `${duration}px`}}></div>)}
-        </div>
+        <div className={'snap-block'} style={{'height': `100vh`}}></div>
     </div>
+
 );
+
 
 export default AnimationBlock;

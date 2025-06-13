@@ -1,0 +1,18 @@
+
+
+@keyframes avatar-move-in {
+  to{
+    transform: translateX(100%);
+  }
+}
+@keyframes my-move-2 {
+  to{
+    opacity: 0;
+  }
+}
+
+@keyframes my-move-3 {
+  to{
+    transform: rotate(360deg);
+  }
+}

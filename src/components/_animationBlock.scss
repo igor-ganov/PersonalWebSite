@@ -1,0 +1,60 @@
+@use "./animation-objects/avatar";
+@use "./animation-objects/hello";
+
+@use "./keyframes";
+
+.scroll-container {
+  height: 100vh;
+
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.time-line-container {
+  position: relative;
+  view-timeline-name: --default-timeline;
+  view-timeline-axis: block;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  container-type: inline-size;
+  container-name: --scroll-container;
+}
+
+.snap-container {
+  display: flex;
+  flex-direction: column;
+  > .snap-block {
+    &:nth-child(odd) {
+      background: red;
+    }
+    &:nth-child(even) {
+      background: blue;
+    }
+  }
+}
+
+.snap-block {
+  flex-basis: var(--length, 1);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  width: 10px;
+}
+
+.dum-block-container{
+  height: 300px;
+  width: 300px;
+  background: red;
+  display: grid;
+  place-items: center;
+}
+
+.dum-block{
+  height: 150px;
+  width: 150px;
+  background: blue;
+}
