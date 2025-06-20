@@ -11,6 +11,10 @@ type ChildrenKey = keyof typeof childrenAnimations;
 export const animations : Record<ChildrenKey, {
     start: { [key: string]: string | number },
     states: Partial<Record<TimelinesPart, { [key: string]: string | number }>>,
+    mobile?: {
+        start: { [key: string]: string | number },
+        states: Partial<Record<TimelinesPart, { [key: string]: string | number }>>,
+    },
     timeline?: string
 }> = {... childrenAnimations}
 

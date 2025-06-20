@@ -5,6 +5,7 @@ const keyValues = [
     "avatar",
     "intro-one",
     "intro-two",
+    "intro-free",
 ] as const;
 
 
@@ -17,6 +18,10 @@ const greetingChildrenKeys = Object.fromEntries(
 export const childrenAnimations: Record<ChildrenKey, {
     start: { [key: string]: string | number },
     states: Partial<Record<TimelinesPart, { [key: string]: string | number }>>,
+    mobile?: {
+        start: { [key: string]: string | number },
+        states: Partial<Record<TimelinesPart, { [key: string]: string | number }>>,
+    }
     timeline?: string
 }> = {
     avatar: {
@@ -24,6 +29,13 @@ export const childrenAnimations: Record<ChildrenKey, {
         states: {
             part2: {transform: 'translateX(0)'},
             part4: {transform: 'translateX(-100%)'},
+        },
+        mobile: {
+            start: {transform: 'translateY(-100%)'},
+            states: {
+                part2: {transform: 'translateY(0)'},
+                part4: {transform: 'translateY(-100%)'},
+            }
         }
     },
     "greeting-container": {
@@ -31,6 +43,16 @@ export const childrenAnimations: Record<ChildrenKey, {
         states: {
             part2: {'grid-template-columns': '485.3px 1fr'},
             part4: {'grid-template-columns': '0 1fr'}
+        },
+        mobile: {
+            start: {
+                'grid-template-columns': '1fr',
+                'grid-template-rows': '0 1fr'
+            },
+            states: {
+                part2: {'grid-template-rows': '400px 1fr'},
+                part4: {'grid-template-rows': '0 1fr'}
+            },
         }
     },
     "intro-one": {
@@ -41,40 +63,54 @@ export const childrenAnimations: Record<ChildrenKey, {
         }
     },
     "intro-two": {
-    start: {opacity: 0},
-    states: {
-        part2: {opacity: 1},
-        part3: {opacity: 0}
-    }
-},
-    
+        start: {opacity: 0},
+        states: {
+            part2: {opacity: 1},
+            part3: {opacity: 0}
+        }
+    },
+    "intro-free": {
+        start: {opacity: 0},
+        states: {
+            part3: {opacity: 1},
+            part4: {opacity: 0}
+        }
+    },
+
 }
 
 const intro = {
     one: "Hello there!",
     two: "My name is Igor",
+    free: "I'm a Senior Full-stack Developer",
 };
 
 const Avatar = () => (
     <div
-        className={`${greetingChildrenKeys["greeting-container"]} avatar-container animated animation-greeting-container fixed`}
+        className={`${greetingChildrenKeys["greeting-container"]} avatar-container fixed`}
     >
         <picture
-            className={`${greetingChildrenKeys["avatar"]} avatar animated animation-greeting-avatar`}
+            className={`${greetingChildrenKeys["avatar"]} avatar`}
         >
             <img src="assets/avatar.jpg" alt="My avatar"/>
         </picture>
         <div className="intro-text">
             <h1
-                className={`${greetingChildrenKeys["intro-one"]} intro animated animation-greeting starting-animation-greeting`}
+                className={`${greetingChildrenKeys["intro-one"]} intro`}
             >
                 {intro.one}
             </h1>
 
             <h1
-                className={`${greetingChildrenKeys["intro-two"]} intro animated animation-intro`}
+                className={`${greetingChildrenKeys["intro-two"]} intro`}
             >
                 {intro.two}
+            </h1>
+            
+            <h1
+                className={`${greetingChildrenKeys["intro-free"]} intro`}
+            >
+                {intro.free}
             </h1>
         </div>
     </div>

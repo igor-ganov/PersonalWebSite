@@ -25,11 +25,15 @@ const intervals = toObject([...aggregate(getKeys(timelines), (acc, key) => ({
     to: acc.to + timelines[key] / fullDuration * 100
 }), {to: 0})], ({key, from, to}) => [key, {from: from, to: to}]);
 
-const animationStyles = toArray(animations).map(({key, value: {start, states, timeline}}) => createStyles(
+const animationStyles = toArray(animations).map(({key, value: {start, states, timeline, mobile}}) => createStyles(
     {
         id: key,
         startState: start,
         states: toArray(states).map(s => ({state: s.value, interval: intervals[s.key]})),
+        mobile: mobile ? {
+                startState: mobile.start,
+                states: toArray(mobile.states).map(s => ({state: s.value, interval: intervals[s.key]}))
+            } : undefined,
         scrollContainerTimeline: timeline ?? "--default-timeline"
     })).join('\n');
 
