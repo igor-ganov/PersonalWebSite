@@ -52,7 +52,7 @@ const AnimationBlock: FC = () => (
         <style>{`${animationStyles}`}</style>
         <div className={"time-line-container"}>
             <div className={"sticky"}>
-                <div className={"test-time-line"}></div>
+                {/*<div className={"test-time-line"}></div>*/}
                 {children}
             </div>
             <div className={"snap-container"}>

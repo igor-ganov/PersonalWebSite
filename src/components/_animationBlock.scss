@@ -28,14 +28,14 @@
 .snap-container {
   display: flex;
   flex-direction: column;
-  > .snap-block {
+ /* > .snap-block {
     &:nth-child(odd) {
       background: red;
     }
     &:nth-child(even) {
       background: blue;
     }
-  }
+  }*/
 }
 
 .snap-block {
