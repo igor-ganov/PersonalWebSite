@@ -4,6 +4,7 @@
 @use "./keyframes";
 
 .scroll-container {
+  position: relative;
   height: 100vh;
 
   overflow-y: scroll;
@@ -12,7 +13,6 @@
 }
 
 .time-line-container {
-  position: relative;
   view-timeline-name: --default-timeline;
   view-timeline-axis: block;
 }
@@ -68,6 +68,22 @@
     &:nth-child(even){
       background: blue;
     }
+  }
+}
+
+.test-time-line{
+  position: absolute;
+  top: 0;
+  height: 100px;
+  width: 0;
+  background: red;
+  animation: animation-test-time-line linear forwards;
+  animation-timeline: --default-timeline;
+  animation-range: 16.67% contain 100%;
+}
+@keyframes animation-test-time-line{
+  to{
+    width: 100px;
   }
 }
 

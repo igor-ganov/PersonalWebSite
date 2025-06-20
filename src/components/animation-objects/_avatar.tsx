@@ -25,11 +25,18 @@ export const childrenAnimations: Record<ChildrenKey, {
     timeline?: string
 }> = {
     avatar: {
-        start: {transform: 'translateX(-100%)'},
+        start: {
+            transform: 'translateX(-100%)',
+            opacity: 0,
+        },
         states: {
-            part2: {transform: 'translateX(0)'},
+            part2: {
+                transform: 'translateX(0)',
+                opacity: 1,
+            },
             part4: {
-                transform: 'translate(-50%, calc(-100vh/2)) scale(0.2) translate(calc(50% + 3em), calc(50%  + 3em))'
+                transform: 'translate(-50%, calc(-100vh/2)) scale(0.2) translate(calc(50% + 3em), calc(50%  + 3em))',
+                opacity: 1,
             },
         },
         mobile: {
@@ -58,23 +65,38 @@ export const childrenAnimations: Record<ChildrenKey, {
         }
     },
     "intro-one": {
-        start: {opacity: 0},
+        start: {
+            opacity: 0,
+            transform: 'translateY(50%)'
+        },
         states: {
             part1: {opacity: 1},
             part2: {opacity: 0}
         }
     },
     "intro-two": {
-        start: {opacity: 0},
+        start: {
+            opacity: 0,
+            transform: 'translateY(50%)'
+        },
         states: {
-            part2: {opacity: 1},
+            part2: {
+                opacity: 1,
+                transform: 'translateY(0)'
+            },
             part3: {opacity: 0}
         }
     },
     "intro-free": {
-        start: {opacity: 0},
+        start: {
+            opacity: 0,
+            transform: 'translateY(50%)'
+        },
         states: {
-            part3: {opacity: 1},
+            part3: {
+                opacity: 1,
+                transform: 'translateY(0)'
+            },
             part4: {opacity: 0}
         }
     },
