@@ -28,7 +28,9 @@ export const childrenAnimations: Record<ChildrenKey, {
         start: {transform: 'translateX(-100%)'},
         states: {
             part2: {transform: 'translateX(0)'},
-            part4: {transform: 'translateX(-100%)'},
+            part4: {
+                transform: 'translate(-50%, calc(-100vh/2)) scale(0.2) translate(calc(50% + 3em), calc(50%  + 3em))'
+            },
         },
         mobile: {
             start: {transform: 'translateY(-100%)'},
