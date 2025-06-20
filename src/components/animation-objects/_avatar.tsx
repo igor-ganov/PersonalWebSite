@@ -35,15 +35,24 @@ export const childrenAnimations: Record<ChildrenKey, {
                 opacity: 1,
             },
             part4: {
-                transform: 'translate(-50%, calc(-100vh/2)) scale(0.2) translate(calc(50% + 3em), calc(50%  + 3em))',
+                transform: 'translate(-50%, calc(-50vh)) scale(0.2) translate(calc(50% + 3em), calc(50%  + 3em))',
                 opacity: 1,
             },
         },
         mobile: {
-            start: {transform: 'translateY(-100%)'},
+            start: {
+                transform: 'translateY(-100%)',
+                opacity: 0,
+            },
             states: {
-                part2: {transform: 'translateY(0)'},
-                part4: {transform: 'translateY(-100%)'},
+                part2: {
+                    transform: 'translateY(0)',
+                    opacity: 1,
+                },
+                part4: {
+                    transform: 'translate(-50vw, -50%) scale(0.2) translate(calc(50% + 3em), calc(50% + 3em))',
+                    opacity: 1,
+                },
             }
         }
     },
