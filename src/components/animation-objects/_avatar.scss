@@ -1,8 +1,13 @@
 .avatar-container {
+  height: 100vh;
+  width: 100%;
+  
   display: grid;
   grid-template-columns: 0 1fr;
-  height: 100vh;
+  grid-template-rows: 1fr;
+  grid-auto-flow: column;  
   align-content: center;
+  align-items: center;
 
   > .avatar {
     display: block;
@@ -16,29 +21,40 @@
     }
   }
 
-  @media screen and (max-width: 768px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 0 1fr;
-      justify-items: stretch;
+  > .intro-text {
+    grid-column: 2;
+    
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
-      > .avatar {
-        justify-self: center;
-
-        display: block;
-        width: min(485.3px, 100vw);
-        height: fit-content;
-
-        > img {
-          width: 100%;
-          height: unset;
-          object-fit: fill;
-          // box-shadow: 1px 1px 10px 1px #808080;
-        }
-      }
+    > .intro {
+      position: absolute;
+      flex-grow: 1;
     }
-  @keyframes avatar-move-in {
-    to {
-      transform: translateX(100%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .avatar-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0 1fr;
+    justify-items: stretch;
+
+    > .avatar {
+      justify-self: center;
+
+      display: block;
+      width: min(485.3px, 100vw);
+      height: fit-content;
+
+      > img {
+        width: 100%;
+        height: unset;
+        object-fit: fill;
+      }
     }
   }
 }
