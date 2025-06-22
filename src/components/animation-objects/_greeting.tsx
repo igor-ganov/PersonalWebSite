@@ -55,8 +55,8 @@ export const greetingAnimations: Animations<GreetingChildrenKey> = {
         states: {
             part4: {
                 'clip-path': 'circle(40% at 50% 55%)',
-            },
-        }
+            }
+        },
     },
     "greeting-container": {
         start: {'grid-template-columns': '0 1fr'},

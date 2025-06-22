@@ -16,7 +16,8 @@ export const timelines = {
     part9: 100,
     part10: 100,
     part11: 100,
-    part12: 100
+    part12: 100,
+    part13: 100,
 }
 
 type ChildrenAnimations = keyof MergeIfNoDuplicates<[

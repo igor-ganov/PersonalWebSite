@@ -10,6 +10,7 @@ const keyValues = [
     "technology-6",
     "technology-7",
     "technology-8",
+    "technologies-container"
 ] as const;
 
 
@@ -126,11 +127,21 @@ export const technologiesAnimations: Animations<ChildrenKey> = {
                 opacity: 1,
             },
         }
+    },
+    'technologies-container': {
+        start: {
+            rotate: '0 1 0 0deg'
+        },
+         states: {
+            part13: {
+                rotate: '0 1 0 90deg'
+            }
+         }
     }
 }
 
 const Technologies = () => (
-    <div className='technologies-container'>
+    <div className={technologiesKeys['technologies-container']}>
         <h2 className={technologiesKeys['technologies-title']}>I have worked with technologies such as...</h2>
         <ul className="technologies-list">
             <ol className={technologiesKeys['technology-1']}>C#,</ol>
