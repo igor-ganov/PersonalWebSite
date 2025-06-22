@@ -39,6 +39,8 @@
 
 @media screen and (max-width: 768px) {
   .avatar-container {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    
     align-items: unset;
     grid-template-columns: 1fr;
     grid-template-rows: 0 1fr;

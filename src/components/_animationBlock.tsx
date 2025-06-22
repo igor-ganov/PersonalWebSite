@@ -1,4 +1,4 @@
-import {FC, JSX} from "react";
+import {FC} from "react";
 import {createStyles} from "./_animationStep";
 import {getKeys, toArray, toObject} from "./_help-functions";
 import {animations, timelines, TimelinesPart, children} from "./_configuration";

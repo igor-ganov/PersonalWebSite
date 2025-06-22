@@ -1,29 +1,21 @@
-import {TimelinesPart} from "../_configuration";
+import {Animations} from "../types";
 
 const keyValues = [
     "greeting-container",
     "avatar",
+    "avatar-img",
     "intro-one",
     "intro-two",
     "intro-free",
 ] as const;
 
 
-type ChildrenKey = (typeof keyValues)[number];
-const greetingChildrenKeys = Object.fromEntries(
+type GreetingChildrenKey = (typeof keyValues)[number];
+export const greetingChildrenKeys = Object.fromEntries(
     keyValues.map(key => [key, key])
-) as Record<ChildrenKey, ChildrenKey>;
+) as Record<GreetingChildrenKey, GreetingChildrenKey>;
 
-
-export const childrenAnimations: Record<ChildrenKey, {
-    start: { [key: string]: string | number },
-    states: Partial<Record<TimelinesPart, { [key: string]: string | number }>>,
-    mobile?: {
-        start: { [key: string]: string | number },
-        states: Partial<Record<TimelinesPart, { [key: string]: string | number }>>,
-    }
-    timeline?: string
-}> = {
+export const greetingAnimations: Animations<GreetingChildrenKey> = {
     avatar: {
         start: {
             transform: 'translateX(-100%)',
@@ -35,7 +27,7 @@ export const childrenAnimations: Record<ChildrenKey, {
                 opacity: 1,
             },
             part4: {
-                transform: 'translate(-50%, calc(-50vh)) scale(0.2) translate(calc(50% + 3em), calc(50%  + 3em))',
+                transform: 'translate(-50%, calc(-50vh)) scale(0.2) translate(calc(50% + 3em), calc(50%  + 2em))',
                 opacity: 1,
             },
         },
@@ -50,10 +42,20 @@ export const childrenAnimations: Record<ChildrenKey, {
                     opacity: 1,
                 },
                 part4: {
-                    transform: 'translate(-50vw, -50%) scale(0.2) translate(calc(50% + 3em), calc(50% + 3em))',
+                    transform: 'translate(-50vw, -50%) scale(0.2) translate(calc(50% + 3em), calc(50% + 2em))',
                     opacity: 1,
                 },
             }
+        }
+    },
+    "avatar-img": {
+        start: {
+            'clip-path': 'circle(100% at 50% 55%)',
+        },
+        states: {
+            part4: {
+                'clip-path': 'circle(40% at 50% 55%)',
+            },
         }
     },
     "greeting-container": {
@@ -125,7 +127,7 @@ const Avatar = () => (
         <picture
             className={`${greetingChildrenKeys["avatar"]} avatar`}
         >
-            <img src="assets/avatar.jpg" alt="My avatar"/>
+            <img className={`${greetingChildrenKeys["avatar-img"]}`} src="assets/avatar.jpg" alt="My avatar"/>
         </picture>
         <div className="intro-text">
             <h1
